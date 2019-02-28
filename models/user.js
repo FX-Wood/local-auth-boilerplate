@@ -1,4 +1,6 @@
 'use strict';
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
     name: {
@@ -25,9 +27,29 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     }
-  }, {});
+  }, {
+    hooks: {
+      beforeCreate: function(user, options) {
+        if (user && user.password) {
+          let hash = bcrypt.hashSync(user.password, 12);
+          user.password = hash;
+        }
+      }
+    }
+  });
   user.associate = function(models) {
     // associations can be defined here
   };
+  // Function to compare entered password to hashed password
+  user.prototype.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+  };
+
+  // Function to remove password before sending the user object
+  user.prototype.toJSON = function() {
+    let userData = this.get();
+    delete userData.password;
+    return userData
+  }
   return user;
 };
