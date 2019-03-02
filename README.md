@@ -11,7 +11,8 @@ Express authentication template using Passport + flash messages + custom middlew
   * Use `npm run lint:css` to lint your CSS
   * Use `npm test` to run tests
 * Setup the databases
-  * Change the database names in `config/config.json` to reflect your project
+  * Copy and rename `example-.env` to `.env` in your root project directory
+  * Change the database names in `.env` to reflect your project
   * Run `createdb project_name_development` to create the development database
   * Run `createdb project_name_test` to create the test database
 
