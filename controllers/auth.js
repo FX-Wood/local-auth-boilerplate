@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../models');
+const db = require('../db/models');
 const passport = require('../config/passportConfig');
 
 router.get('/signup', function(req, res) {

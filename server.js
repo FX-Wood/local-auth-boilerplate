@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
-const db = require('./models');
+const db = require('./db/models');
 const app = express();
 const passport = require('./config/passportConfig');
 const session = require('express-session');
